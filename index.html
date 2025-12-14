@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azure Static Web App | Portfolio</title>
+  <meta name="description" content="A modern landing page for Azure Static Web Apps." />
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#111b3a;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 20%, #3b82f6 0%, transparent 60%),
+        radial-gradient(900px 520px at 80% 25%, #a855f7 0%, transparent 58%),
+        radial-gradient(900px 520px at 40% 95%, #22c55e 0%, transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:32px 18px 64px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 16px;border:1px solid var(--line);
+      background:rgba(0,0,0,.15);backdrop-filter: blur(10px);
+      border-radius: 999px;
+      position:sticky;top:14px;z-index:10;
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(168,85,247,.9));
+      box-shadow: 0 10px 25px rgba(59,130,246,.25);
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.22);
+    }
+    .logo svg{opacity:.95}
+    .brand h1{font-size:14px;margin:0;letter-spacing:.3px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .chip{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      font-size:13px;color:var(--muted);
+      transition:.2s;
+    }
+    .chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.10);color:var(--text)}
+    .hero{
+      margin-top:34px;
+      display:grid;grid-template-columns: 1.15fr .85fr;
+      gap:20px;align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      header{border-radius:18px}
+    }
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .left{padding:30px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .eyebrow .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.15);
+    }
+    h2{
+      margin:14px 0 10px;
+      font-size:40px;line-height:1.1;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 480px){h2{font-size:34px}}
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15.5px;
+      max-width: 62ch;
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-weight:600;
+      transition:.2s;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.12)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(168,85,247,.92));
+      border-color: rgba(255,255,255,.25);
+      box-shadow: 0 16px 40px rgba(59,130,246,.22);
+    }
+    .btn.primary:hover{filter:saturate(1.1);transform:translateY(-1px)}
+    .mini{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;color:var(--muted);font-size:13px
+    }
+    .tag{
+      padding:8px 10px;border-radius:999px;border:1px dashed rgba(255,255,255,.22);
+      background:rgba(255,255,255,.05);
+    }
+
+    .right{
+      display:grid;
+      grid-template-rows:auto 1fr;
+    }
+    .stats{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:10px;padding:18px;border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    }
+    .stat{
+      padding:14px;border-radius:16px;background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .stat b{display:block;font-size:20px}
+    .stat span{font-size:12px;color:var(--muted)}
+    .cardGrid{
+      padding:18px;
+      display:grid;gap:12px;
+      grid-template-columns:1fr;
+    }
+    .card{
+      padding:16px;border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      transition:.2s;
+    }
+    .card:hover{transform:translateY(-1px);background:rgba(255,255,255,.09)}
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+    .pill{
+      font-size:12px;color:var(--muted);
+      padding:7px 10px;border-radius:999px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    section.features{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 900px){section.features{grid-template-columns:1fr}}
+    .feature{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+    .feature h4{margin:10px 0 6px;font-size:15px}
+    .feature p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+    footer{
+      margin-top:26px;
+      padding:20px 8px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      padding:6px 9px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.25);
+      color:rgba(255,255,255,.82);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l9 4.9v10.2L12 22l-9-4.9V6.9L12 2z" stroke="white" stroke-width="1.6" opacity=".9"/>
+            <path d="M12 7.2l5.5 2.9v5.8L12 18.8l-5.5-2.9v-5.8L12 7.2z" fill="white" opacity=".18"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Azure Static Web App</h1>
+          <p id="subtitle">Vanilla JavaScript • GitHub Actions</p>
+        </div>
+      </div>
+      <nav>
+        <a class="chip" href="#features">Features</a>
+        <a class="chip" href="#status">Status</a>
+        <a class="chip" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="panel left">
+        <div class="eyebrow"><span class="dot"></span> Deployed successfully • Ready for enterprise demos</div>
+        <h2>Modern landing page for your <span style="opacity:.9">Azure Static Web App</span></h2>
+        <p class="sub">
+          This page is optimized for Microsoft Learn labs and portfolio evidence.
+          It includes a clean UI, interactive status badge, and a simple section layout you can screenshot for your assessment.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="#status" id="btnCheck">
+            <span>✅</span> Check live status
+          </a>
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">
+            <span>🔗</span> Open GitHub
+          </a>
+        </div>
+
+        <div class="mini">
+          <span class="tag">Fast</span>
+          <span class="tag">Secure</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Scalable</span>
+        </div>
+      </div>
+
+      <aside class="panel right" id="status">
+        <div class="stats">
+          <div class="stat">
+            <b id="deployState">Live</b>
+            <span>Deployment state</span>
+          </div>
+          <div class="stat">
+            <b id="buildState">OK</b>
+            <span>Build status</span>
+          </div>
+          <div class="stat">
+            <b id="timeNow">--:--</b>
+            <span>Local time</span>
+          </div>
+        </div>
+
+        <div class="cardGrid">
+          <div class="card">
+            <h3>What you can screenshot for your portfolio</h3>
+            <p>
+              Azure Portal Static Web App overview, GitHub Actions workflow run, and this live UI showing a successful deploy.
+            </p>
+            <div class="row">
+              <span class="pill">Evidence-ready</span>
+              <span class="pill" id="envTag">Environment: Production</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Next steps</h3>
+            <p>
+              Add an API (Azure Functions), enable custom domain, and configure authentication for an enterprise-ready demo.
+            </p>
+            <div class="row">
+              <span class="pill">Optional</span>
+              <span class="pill">Azure Functions</span>
+            </div>
+          </div>
+
+          <div class="card" id="contact">
+            <h3>Contact</h3>
+            <p>
+              Replace this with your details for submission (email / GitHub). This keeps the page professional and complete.
+            </p>
+            <div class="row">
+              <span class="pill">Your Name</span>
+              <span class="pill">your.email@example.com</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <section class="features" id="features">
+      <div class="feature">
+        <div class="kbd">01</div>
+        <h4>Azure + GitHub Actions</h4>
+        <p>Automatic deployment pipeline created by Azure Static Web Apps for every push to your main branch.</p>
+      </div>
+      <div class="feature">
+        <div class="kbd">02</div>
+        <h4>Enterprise-friendly UI</h4>
+        <p>Clean layout, modern design, and sections that are easy to describe in reflections and architecture discussions.</p>
+      </div>
+      <div class="feature">
+        <div class="kbd">03</div>
+        <h4>Ready for extensions</h4>
+        <p>Add authentication, an API, monitoring, and governance controls to align with enterprise requirements.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Azure Static Web Apps • Built with Vanilla HTML/CSS/JS</div>
+      <div class="kbd">Tip: Take screenshots of Azure Portal + GitHub Actions + Live URL</div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple UI enhancements for a "live" feel
+    const pad = (n) => String(n).padStart(2, "0");
+    const setTime = () => {
+      const d = new Date();
+      document.getElementById("timeNow").textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    setTime();
+    setInterval(setTime, 15000);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simulated status - you can edit these labels for screenshots
+    const deployState = document.getElementById("deployState");
+    const buildState = document.getElementById("buildState");
+
+    document.getElementById("btnCheck").addEventListener("click", () => {
+      deployState.textContent = "Live";
+      buildState.textContent = "OK";
+      deployState.style.opacity = 1;
+      buildState.style.opacity = 1;
+    });
+  </script>
+</body>
+</html>
