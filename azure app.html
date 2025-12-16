@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Healthcare Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px 40px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: #4fd1c5;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      color: #4fd1c5;
+    }
+
+    .hero {
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero span {
+      color: #4fd1c5;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .hero button {
+      background: #4fd1c5;
+      border: none;
+      padding: 14px 30px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #03363d;
+      font-weight: 600;
+    }
+
+    .hero button:hover {
+      background: #38b2ac;
+    }
+
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #4fd1c5;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .status {
+      text-align: center;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.4);
+      margin-top: 40px;
+      border-radius: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 25px;
+      background: #38b2ac;
+      color: #022c2f;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Cloud Healthcare</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#security">Security</a>
+      <a href="#status">Status</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Secure <span>Healthcare Data</span> on the Cloud</h2>
+    <p>
+      A modern cloud-based healthcare platform designed to securely manage patient data,
+      medical sensors, and clinical services using Azure Cloud technologies.
+    </p>
+    <button>View Live Platform</button>
+  </section>
+
+  <section id="services">
+    <div class="grid">
+      <div class="card">
+        <h3>Patient Data Management</h3>
+        <p>
+          Secure storage and access to electronic health records (EHR) using scalable cloud
+          infrastructure with high availability.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Medical Sensor Monitoring</h3>
+        <p>
+          Real-time data collection from IoMT devices, enabling continuous patient health
+          monitoring and analytics.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cloud Analytics & AI</h3>
+        <p>
+          Integration of machine learning models for early disease detection and anomaly
+          identification in medical sensor networks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="security">
+    <div class="grid">
+      <div class="card">
+        <h3>Data Security</h3>
+        <p>
+          End-to-end encryption, role-based access control, and compliance with healthcare
+          data protection standards.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Compliance & Governance</h3>
+        <p>
+          Designed to align with healthcare regulations such as GDPR and data governance
+          frameworks for enterprise environments.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cloud Scalability</h3>
+        <p>
+          Azure cloud services ensure elastic scaling to support hospitals, clinics,
+          and telemedicine platforms.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="status" id="status">
+    <h2>System Deployment Status</h2>
+    <p>This healthcare platform is successfully deployed using Azure Static Web Apps.</p>
+    <div class="badge">✔ Live & Operational</div>
+  </section>
+
+  <footer>
+    © 2025 Cloud Healthcare Platform | Azure Static Web Apps
+  </footer>
+
+</body>
+</html>
